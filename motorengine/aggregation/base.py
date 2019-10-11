@@ -4,7 +4,10 @@
 import six
 from bson import ObjectId
 from easydict import EasyDict as edict
-from tornado.concurrent import return_future
+try:
+    from tornado.concurrent import return_future
+except ImportError:
+    from tornado.gen import coroutine as return_future
 
 from motorengine import ASCENDING
 from motorengine.query_builder.transform import update

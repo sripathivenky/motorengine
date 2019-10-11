@@ -9,11 +9,17 @@ from motorengine.fields.base_field import BaseField
 class URLField(BaseField):
     '''
     Field responsible for storing URLs.
+
     Usage:
+
     .. testcode:: modeling_fields
+
         name = URLField(required=True)
+
     Available arguments (apart from those in `BaseField`): `None`
+
     .. note::
+
         MotorEngine does not implement the `verify_exists` parameter
         as MongoEngine due to async http requiring the current io_loop.
     '''
@@ -28,9 +34,6 @@ class URLField(BaseField):
     )
 
     def validate(self, value):
-        if value is None:
-            return True
-
         is_url = URLField.URL_REGEX.match(value)
 
         return is_url

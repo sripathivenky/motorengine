@@ -6,7 +6,10 @@ import operator
 import itertools
 
 from pymongo.errors import DuplicateKeyError
-from tornado.concurrent import return_future
+try:
+    from tornado.concurrent import return_future
+except ImportError:
+    from tornado.gen import coroutine as return_future
 from easydict import EasyDict as edict
 from bson.objectid import ObjectId
 

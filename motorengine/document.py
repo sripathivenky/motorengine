@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import six
-from tornado.concurrent import return_future
+try:
+    from tornado.concurrent import return_future
+except ImportError:
+    from tornado.gen import coroutine as return_future
 
 from motorengine.metaclasses import DocumentMetaClass
 from motorengine.errors import InvalidDocumentError, LoadReferencesRequiredError
